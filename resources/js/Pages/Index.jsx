@@ -3,7 +3,8 @@ import Input from "@/Components/Input";
 import InputCompile from "@/Components/InputCompile";
 import Select from "@/Components/Select";
 import App from "@/Layouts/App";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Index() {
     const [selectedCity, setSelectedCity] = useState('');
@@ -27,7 +28,7 @@ export default function Index() {
                 )));
             } catch (error) {
                 setFilteredCities([]);
-                console.log('Ошибка при получении городов: ' + error);
+                console.error(error);
             }
         }
     };
@@ -37,23 +38,28 @@ export default function Index() {
         setFilteredCities([]);
     };
 
-    const [adults, setAdults] = useState([
-        {
-            id: 1,
-            name: 'Test',
-        }
-    ]);
+    const [adults, setAdults] = useState([]);
+    const [childrens, setChildrens] = useState([]);
 
-    const [childrens, setChildrens] = useState([
-        {
-            id: 1,
-            name: 'Test2',
-        },
-        {
-            id: 2,
-            name: 'Test3',
-        },
-    ]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const childrens = await axios.get(route('api.get.childrens'));
+                setChildrens(() => childrens.data.map(data => ({
+                    id: data.id,
+                    name: data.children,
+                })));
+                const adults = await axios.get(route('api.get.adults'));
+                setAdults(() => adults.data.map(data => ({
+                    id: data.id,
+                    name: data.adult,
+                })));
+            } catch (error) {
+                console.error(error);            
+            }
+        }
+        fetchData();
+    }, []);
 
     return (
         <App>

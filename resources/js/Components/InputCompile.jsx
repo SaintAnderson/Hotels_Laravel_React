@@ -6,7 +6,7 @@ export default function InputCompile({ children, filteredItems, onItemSelect, ..
         <div className="mb-4 relative">
             <Input
                 {...input}
-                autocomplete="off"
+                autoComplete="off"
             >
                 {children}
             </Input>
