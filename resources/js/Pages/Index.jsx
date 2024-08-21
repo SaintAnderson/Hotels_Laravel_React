@@ -4,7 +4,7 @@ import InputCompile from "@/Components/InputCompile";
 import Select from "@/Components/Select";
 import App from "@/Layouts/App";
 import { useState } from "react";
-
+import Menu from "@/Components/Menu.jsx"
 export default function Index() {
     const [selectedCity, setSelectedCity] = useState('');
     const [filteredCities, setFilteredCities] = useState([]);
@@ -57,6 +57,7 @@ export default function Index() {
 
     return (
         <App>
+            <Menu/>
             <div>
                 <Form title='Бронирование'>
                     <div className="grid md:grid-cols-2 md:gap-4 mb-4">
