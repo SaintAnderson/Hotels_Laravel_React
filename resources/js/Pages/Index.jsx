@@ -3,10 +3,26 @@ import Input from "@/Components/Input";
 import InputCompile from "@/Components/InputCompile";
 import Select from "@/Components/Select";
 import App from "@/Layouts/App";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import Navbar from "@/Layouts/Navbar";
 
-export default function Index() {
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export default function Index({ adults, childrens }) {    
+    const [adultsData, setAdultsData] = useState([]);
+    const [childrensData, setChildrensData] = useState([]);
+
+    useEffect(() => {
+        setAdultsData(() => adults.map(data => ({
+            id: data.id,
+            name: data.adult,
+        })));          
+        setChildrensData(() => childrens.map(data => ({
+            id: data.id,
+            name: data.children,
+        })));
+    }, []);
+    
     const [selectedCity, setSelectedCity] = useState('');
     const [filteredCities, setFilteredCities] = useState([]);
 
@@ -38,32 +54,10 @@ export default function Index() {
         setFilteredCities([]);
     };
 
-    const [adults, setAdults] = useState([]);
-    const [childrens, setChildrens] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const childrens = await axios.get(route('api.get.childrens'));
-                setChildrens(() => childrens.data.map(data => ({
-                    id: data.id,
-                    name: data.children,
-                })));
-                const adults = await axios.get(route('api.get.adults'));
-                setAdults(() => adults.data.map(data => ({
-                    id: data.id,
-                    name: data.adult,
-                })));
-            } catch (error) {
-                console.error(error);            
-            }
-        }
-        fetchData();
-    }, []);
-
     return (
         <App>
-            <div>
+            <Navbar />
+            <div className="max-w-screen-xl mx-auto my-3">
                 <Form title='Бронирование'>
                     <div className="grid md:grid-cols-2 md:gap-4 mb-4">
                         <Input id="arrival-date" type="date" name="CheckIn">Дата приезда</Input>
@@ -79,8 +73,8 @@ export default function Index() {
                         onChange={handleCityChange}>Город</InputCompile>
 
                     <div className="grid md:grid-cols-2 md:gap-4 mb-4">
-                        <Select id="adults" name='adults' options={adults}>Взрослых</Select>
-                        <Select id="childrens" name='childrens' options={childrens}>Детей</Select>
+                        <Select id="adults" name='adults' options={adultsData}>Взрослых</Select>
+                        <Select id="childrens" name='childrens' options={childrensData}>Детей</Select>
                     </div>
 
                     <button
