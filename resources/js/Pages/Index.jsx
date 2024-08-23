@@ -1,8 +1,5 @@
 import App from "@/Layouts/App";
 import Navbar from "@/Layouts/Navbar";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Slider from "@/Layouts/Slider.jsx";
 import BookingForm from "@/Layouts/BookingForm.jsx";
 import Module_Description_Image from "@/Layouts/Module_Description_Image.jsx";
@@ -12,12 +9,17 @@ export default function Index({ adults, childrens }) {
         <App>
             <Navbar />
             <div className="relative">
-                <Slider/>
-                <Module_Description_Image/>
-                <div className="absolute right-40 top-[25%]">
-                    <BookingForm adults={adults} childrens={childrens}/>
+                <Slider />
+                <div className="absolute inset-0 max-w-screen-xl mx-auto h-full overflow-hidden">
+                    <div className="flex justify-end items-center h-full w-full">
+                        <div className="max-w-screen-xl mr-4 xl:mr-0">
+                            <BookingForm adults={adults} childrens={childrens}/>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <Module_Description_Image />
         </App>
     );
 }

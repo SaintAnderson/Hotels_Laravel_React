@@ -3,7 +3,7 @@ import InputCompile from "@/Components/InputCompile.jsx";
 import Select from "@/Components/Select.jsx";
 import Form from "@/Components/Form.jsx";
 import axios from "axios";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function ({ adults, childrens }) {
     const [adultsData, setAdultsData] = useState([]);
@@ -53,7 +53,7 @@ export default function ({ adults, childrens }) {
 
     return (
         <Form title='Бронирование'>
-            <div className="grid md:grid-cols-2 md:gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                 <Input id="arrival-date" type="date" name="CheckIn">Дата приезда</Input>
                 <Input id="departure-date" type="date" name="CheckOut">Дата ухода</Input>
             </div>
@@ -64,19 +64,24 @@ export default function ({ adults, childrens }) {
                 value={selectedCity}
                 filteredItems={filteredCities}
                 onItemSelect={handleCitySelect}
-                onChange={handleCityChange}>Город</InputCompile>
+                onChange={handleCityChange}
+                className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            >
+                Город
+            </InputCompile>
 
-            <div className="grid md:grid-cols-2 md:gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                 <Select id="adults" name='adults' options={adultsData}>Взрослых</Select>
                 <Select id="childrens" name='childrens' options={childrensData}>Детей</Select>
             </div>
 
             <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                className="w-full bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 dark:focus:ring-blue-700"
             >
-                Забронировать
+                Поиск
             </button>
         </Form>
+
     )
 }
