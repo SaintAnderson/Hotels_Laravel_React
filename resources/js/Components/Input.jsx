@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input({ children, ...input }) {
+export default function ({ children, ...input }) {
 
     return (
         <div>

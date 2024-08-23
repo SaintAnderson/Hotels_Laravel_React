@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 
 const DropDownContext = createContext();
 
-const Dropdown = ({ children }) => {
+export default function ({ children }) {
     const [open, setOpen] = useState(false);
 
     const toggleOpen = () => {
@@ -86,5 +86,3 @@ const DropdownLink = ({ className = '', children, ...props }) => {
 Dropdown.Trigger = Trigger;
 Dropdown.Content = Content;
 Dropdown.Link = DropdownLink;
-
-export default Dropdown;

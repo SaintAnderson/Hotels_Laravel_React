@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from './Input';
 
-export default function InputCompile({ children, filteredItems, onItemSelect, ...input }) {
+export default function ({ children, filteredItems, onItemSelect, ...input }) {
     return (
         <div className="mb-4 relative">
             <Input

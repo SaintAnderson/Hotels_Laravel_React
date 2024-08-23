@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Slider() {
+export default function () {
     const [activeIndex, setActiveIndex] = useState(0);
     const slides = [
         {

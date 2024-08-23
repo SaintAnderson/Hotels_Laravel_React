@@ -1,8 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Navbar() {
+export default function () {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [burger, setBurger] = useState(false);
+
+    const links = [
+        {
+            'name': 'Главная',
+            'link': '#',
+        },
+        {
+            'name': 'Новости',
+            'link': '#',
+        },
+        {
+            'name': 'Номера',
+            'link': '#',
+        },
+        {
+            'name': 'Цены',
+            'link': '#',
+        },
+        {
+            'name': 'Отзывы',
+            'link': '#',
+        },
+    ];
 
     useEffect(() => {
         if (isDarkMode) {
@@ -52,56 +75,21 @@ export default function Navbar() {
                 </button>
                 <div className={`${burger ? 'block' : 'hidden'} w-full md:flex md:w-auto items-center md:space-x-4`} id="navbar-solid-bg">
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent md:dark:bg-transparent dark:border-gray-700">
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
-                            >
-                                Главная
-                                <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
-                            >
-                                Новости
-                                <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
-                            >
-                                Номера
-                                <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
-                            >
-                                Цены
-                                <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
-                            >
-                                Отзывы
-                                <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
-                            </a>
-                        </li>
+                        {links.map((_, index) => (
+                            <li key={index}>
+                                <a
+                                    href={_.link}
+                                    className="block py-2 px-3 md:p-0 text-gray-900 dark:text-white rounded relative group"
+                                >
+                                    {_.name}
+                                    <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-700 group-hover:w-full"></span>
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                     <button
                         onClick={toggleDarkMode}
-                        className="ml-4 p-2 w-10 h-10 text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    >
+                        className={`${burger ? '' : 'ml-4'} p-2 w-10 h-10 text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600`}                    >
                         {isDarkMode ? (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

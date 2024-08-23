@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Select({ children, id, options, ...select }) {
+export default function ({ children, id, options, ...select }) {
     return (
         <div>
             <label htmlFor={id} className="block text-gray-700 dark:text-gray-300 font-medium mb-1 sm:mb-2">{children}</label>

@@ -1,13 +1,11 @@
 import App from "@/Layouts/App";
-import Navbar from "@/Layouts/Navbar";
 import Slider from "@/Layouts/Slider.jsx";
 import BookingForm from "@/Layouts/BookingForm.jsx";
-import Module_Description_Image from "@/Layouts/Module_Description_Image.jsx";
+import ModuleDescriptionImage from "@/Layouts/ModuleDescriptionImage.jsx";
 
-export default function Index({ adults, childrens }) {
+export default function ({ adults, childrens }) {
     return (
         <App>
-            <Navbar />
             <div className="relative">
                 <Slider />
                 <div className="absolute inset-0 max-w-screen-xl mx-auto h-full overflow-hidden">
@@ -19,7 +17,7 @@ export default function Index({ adults, childrens }) {
                 </div>
             </div>
 
-            <Module_Description_Image />
+            <ModuleDescriptionImage />
         </App>
     );
 }

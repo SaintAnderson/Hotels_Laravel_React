@@ -9,9 +9,7 @@ class HotelController extends Controller
 {
     public function __construct(
         public BookingService $bookingService,
-    ) {
-
-    }
+    ) {}
 
     public function index(): Response
     {
@@ -19,5 +17,10 @@ class HotelController extends Controller
             'adults' => $this->bookingService->adults(),
             'childrens' => $this->bookingService->childrens(),
         ]);
+    }
+
+    public function rooms(): Response
+    {
+        return Inertia::render('Rooms');
     }
 }

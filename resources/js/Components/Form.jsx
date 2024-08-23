@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Form({ children, title, ...form }) {
+export default function ({ children, title, ...form }) {
     return (
         <form {...form}>
             <div className="bg-white dark:bg-gray-800 p-6 p-8 rounded-lg shadow-md w-full max-w-lg">
