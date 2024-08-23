@@ -12,7 +12,7 @@ export default function Index({ adults, childrens }) {
                 <Slider />
                 <div className="absolute inset-0 max-w-screen-xl mx-auto h-full overflow-hidden">
                     <div className="flex justify-end items-center h-full w-full">
-                        <div className="max-w-screen-xl mr-4 xl:mr-0">
+                        <div className="max-w-screen-xl mx-auto xl:mr-0">
                             <BookingForm adults={adults} childrens={childrens}/>
                         </div>
                     </div>
