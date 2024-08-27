@@ -5,19 +5,11 @@ import Form from "@/Components/Form.jsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function ({ adults, childrens }) {
-    const [adultsData, setAdultsData] = useState([]);
-    const [childrensData, setChildrensData] = useState([]);
+export default function ({ peoples }) {
+    const [peoplesData, setPeoples] = useState([]);
 
     useEffect(() => {
-        setAdultsData(() => adults.map(data => ({
-            id: data.id,
-            name: data.adult,
-        })));
-        setChildrensData(() => childrens.map(data => ({
-            id: data.id,
-            name: data.children,
-        })));
+        setPeoples(peoples);
     }, []);
 
     const [selectedCity, setSelectedCity] = useState('');
@@ -53,7 +45,7 @@ export default function ({ adults, childrens }) {
 
     return (
         <Form title='Бронирование'>
-            <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+            <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
                 <Input id="arrival-date" type="date" name="CheckIn">Дата приезда</Input>
                 <Input id="departure-date" type="date" name="CheckOut">Дата ухода</Input>
             </div>
@@ -70,9 +62,8 @@ export default function ({ adults, childrens }) {
                 Город
             </InputCompile>
 
-            <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-                <Select id="adults" name='adults' options={adultsData}>Взрослых</Select>
-                <Select id="childrens" name='childrens' options={childrensData}>Детей</Select>
+            <div className="mb-4">
+                <Select id="adults" name='people' options={peoplesData}>Людей</Select>
             </div>
 
             <button

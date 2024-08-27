@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\{Adult, Children, Сity as CityModel};
+use App\Models\{People, Сity as CityModel};
+use Illuminate\Support\Collection;
 
 class BookingService
 {
@@ -17,13 +18,13 @@ class BookingService
         return $filteredCities;
     }
 
-    public function adults(): array
+    public function peoples(): Collection
     {
-        return Adult::all(['id', 'adult'])->toArray();
-    }
-
-    public function childrens(): array
-    {
-        return Children::all(['id', 'children'])->toArray();
+        return People::all(['id', 'amount'])->map(function (People $people): array {
+            return [
+                'id' => $people->id,
+                'name' => $people->amount,
+            ];
+        });
     }
 }

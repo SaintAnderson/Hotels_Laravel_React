@@ -7,7 +7,7 @@ export default function () {
     const links = [
         {
             'name': 'Главная',
-            'link': '#',
+            'link': '/',
         },
         {
             'name': 'Новости',
@@ -15,7 +15,7 @@ export default function () {
         },
         {
             'name': 'Номера',
-            'link': '#',
+            'link': '/rooms',
         },
         {
             'name': 'Цены',
