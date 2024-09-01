@@ -1,6 +1,6 @@
 export default function ({ name, city, pricePerNight, imageUrl, maxGuests }) {
     return (
-        <div className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-sm rounded overflow-hidden shadow-lg bg-white dark:bg-gray-900 mx-2 my-4">
+        <div className="flex-grow w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.5rem)] max-w-sm rounded overflow-hidden shadow-lg bg-white dark:bg-gray-900">
             <img className="w-full h-48 object-cover" src={imageUrl} alt={name} />
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 text-gray-900 dark:text-gray-100">{name}</div>
