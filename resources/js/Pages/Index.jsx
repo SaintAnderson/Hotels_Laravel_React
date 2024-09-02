@@ -14,7 +14,7 @@ export default function ({ peoples }) {
                 <div className="absolute inset-0 max-w-screen-xl mx-auto h-full overflow-hidden">
                     <div className="flex justify-end items-center h-full w-full">
                         <div className="max-w-screen-xl mx-auto xl:mr-0 md:mr-4">
-                            <form className="bg-white dark:bg-gray-900 p-6 p-8 rounded-lg shadow-md w-full max-w-lg" action={route('rooms')}>
+                            <form className="bg-white dark:bg-gray-900 p-6 p-8 rounded-lg shadow-md w-full max-w-lg" action={route('data')}>
                                 <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Бронирование</h2>
 
                                 <div className="grid grid-cols-2 gap-4 mb-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white">

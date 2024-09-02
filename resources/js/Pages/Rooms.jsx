@@ -24,7 +24,6 @@ export default function () {
                         <div className="mb-4">
                             <PeopleCount />
                         </div>
-
                         <button
                             type="submit"
                             className="w-full bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 dark:focus:ring-blue-700"
