@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Range from "../Range";
 
-export default function () {
+export default function ({ max, disabled=false }) {
     const [value, setValue] = useState(1);
 
     const handleChange = (event) => {
@@ -9,6 +9,6 @@ export default function () {
     };
 
     return (
-        <Range id="peopleCount" name="peopleCount" min={1} max={5} value={value} onChange={handleChange}>Людей</Range>
+        <Range id="peopleCount" name="peopleCount" min={1} max={max} value={value} disabled={disabled} onChange={handleChange}>Людей</Range>
     )
 }

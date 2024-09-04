@@ -2,29 +2,26 @@
 
 namespace App\Services;
 
-use App\Models\{People, Сity as CityModel};
-use Illuminate\Support\Collection;
+use App\Models\Hotel;
 
 class BookingService
 {
-    public function cities(string $query): array
+    public function searchHotels(array $data): array
     {
-        $filteredCities = [];
+        $parts = array_map('trim', explode(',', $data['address']));
 
-        if (!empty($query)) {
-            $filteredCities = CityModel::select('city')->where('city', 'like', '%' . $query . '%')->get()->toArray();
-        }
+        $city = isset($parts[0]) && !empty($parts[0]) ? $parts[0] : null;
+        $address = isset($parts[1]) && !empty($parts[1]) ? $parts[1] : null;
 
-        return $filteredCities;
-    }
+        $filtered = [];
 
-    public function peoples(): Collection
-    {
-        return People::all(['id', 'amount'])->map(function (People $people): array {
+        $filtered = Hotel::getHotelsInCity($city, $address)->map(function (Hotel $hotel) {
             return [
-                'id' => $people->id,
-                'name' => $people->amount,
+                'city' => $hotel->city->name,
+                'address' => $hotel->address,
             ];
-        });
+        })->toArray();
+
+        return $filtered;
     }
 }

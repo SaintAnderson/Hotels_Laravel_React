@@ -11,7 +11,7 @@ export default function ({ id, children, ...input }) {
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                     {...input}
                 />
-                <span className="ml-3 text-sm font-medium text-gray-900 dark:text-white">{input.value}</span>
+                <span className="ml-3 text-sm font-medium text-gray-900 dark:text-white">{input.value}{input.value == input.max ? '(макс.)' : null}</span>
             </div>
         </>
     )

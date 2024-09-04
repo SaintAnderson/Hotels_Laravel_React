@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\People;
 use App\Services\BookingService;
 use Illuminate\Http\Request;
 use Inertia\{Inertia, Response};
@@ -17,20 +16,12 @@ class HotelController extends Controller
 
     public function index(): Response
     {
-        $peoples = $this->bookingService->peoples()->toArray();
-
-        return Inertia::render('Index', [
-            'peoples' => $peoples,
-        ]);
+        return Inertia::render('Index');
     }
 
     public function rooms(): Response
     {
-        $peoples = $this->bookingService->peoples()->toArray();
-
-        return Inertia::render('Rooms', [
-            'peoples' => $peoples,
-        ]);
+        return Inertia::render('Rooms');
     }
     function data_rooms(Request $request)
     {

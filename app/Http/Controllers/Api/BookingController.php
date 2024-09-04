@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Services\BookingService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -13,22 +13,10 @@ class BookingController extends Controller
         public BookingService $bookingService,
     ) {}
 
-    public function cities(Request $request)
+    public function search(Request $request): JsonResponse
     {
-        $query = $request->input('q');
-
-        $data = $this->bookingService->cities($query);
+        $data = $this->bookingService->searchHotels($request->all());
 
         return response()->json($data);
-    }
-
-    public function childrens(): JsonResponse
-    {
-        return response()->json($this->bookingService->childrens());
-    }
-
-    public function adults(): JsonResponse
-    {
-        return response()->json($this->bookingService->adults());
     }
 }
