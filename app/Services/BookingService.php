@@ -13,8 +13,6 @@ class BookingService
         $city = isset($parts[0]) && !empty($parts[0]) ? $parts[0] : null;
         $address = isset($parts[1]) && !empty($parts[1]) ? $parts[1] : null;
 
-        $filtered = [];
-
         $filtered = Hotel::getHotelsInCity($city, $address)->map(function (Hotel $hotel) {
             return [
                 'city' => $hotel->city->name,

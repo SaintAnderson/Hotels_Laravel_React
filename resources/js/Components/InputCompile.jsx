@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from './Input';
 
-export default function ({ children, filteredItems, onItemSelect, ...input }) {
+export default function ({ children, filteredItems, onItemSelect, isActive, ...input }) {
     return (
         <div className="mb-4 relative">
             <Input
@@ -12,12 +12,14 @@ export default function ({ children, filteredItems, onItemSelect, ...input }) {
                 {children}
             </Input>
 
-            {input.value.length > 0 && filteredItems.length > 0 && (
+            {isActive && (
                 <ul className="absolute bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md mt-1 max-h-60 overflow-auto z-10 w-full">
                     {filteredItems.map((item, index) => (
                         <li
                             key={index}
-                            onClick={() => onItemSelect(item)}
+                            onClick={() => {
+                                onItemSelect(item);
+                            }}
                             className="px-3 py-2 hover:bg-blue-100 dark:hover:bg-blue-600 dark:text-white cursor-pointer"
                         >
                             {item.name}

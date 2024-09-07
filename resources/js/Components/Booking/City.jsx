@@ -1,39 +1,50 @@
 import InputCompile from "@/Components/InputCompile.jsx";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ({ setPeoples }) {
+export default function () {
     const [selectedHotels, setSelectedHotels] = useState('');
     const [filteredHotels, setFilteredHotels] = useState([]);
+    const [isActive, setIsActive] = useState(false);
 
-    const handleChange = async (event) => {
-        const value = event.target.value;
-        setSelectedHotels(value);
+    useEffect(() => {
+        getData();
+    }, [isActive]);
 
-        if (value) {
-            try {
-                const form = new FormData(document.getElementById('booking'));
+    const getData = async () => {
+        try {
+            const form = new FormData(document.getElementById('booking'));
 
-                const response = await axios.get(route('api.get.hotels.search'), {
-                    params: Object.fromEntries(form.entries()),
-                });
-                setFilteredHotels(() => response.data.map(data => (
-                    {
-                        name: data.city + ', ' + data.address,
-                    }
-                )));
-                setPeoples(10);
-            } catch (error) {
-                setFilteredHotels([]);
-                console.error(error);
-            }
+            const response = await axios.get(route('api.get.hotels.search'), {
+                params: Object.fromEntries(form.entries()),
+            });
+            setFilteredHotels(() => response.data.map(data => (
+                {
+                    name: data.city + ', ' + data.address,
+                }
+            )));
+        } catch (error) {
+            console.error(error);
         }
-    };
+    }
 
     const handleSelect = (data) => {
         setSelectedHotels(data.name);
         setFilteredHotels([]);
+        setIsActive(false);
     };
+
+    const handleChange = (event) => {
+        setSelectedHotels(event.target.value);
+    };
+
+    const handleFocus = () => {
+        setIsActive(true);
+    };
+
+    const handleBlur = () => {
+        // setIsActive(false);
+    }
 
     return (
         <InputCompile
@@ -43,7 +54,9 @@ export default function ({ setPeoples }) {
             filteredItems={filteredHotels}
             onItemSelect={handleSelect}
             onChange={handleChange}
-            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            isActive={isActive}
         >
             Город
         </InputCompile>

@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city id')->constrained();
             $table->string('address')->unique();
+            $table->foreignId('city_id')->constrained();
             $table->timestamps();
         });
     }
